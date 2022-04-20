@@ -5,6 +5,13 @@ import classNames from "classnames";
 
 export default function InterviewerListItem(props) {
 
+ const formatName = () => {
+   if (props.selected) {
+     return props.name
+   } else {
+     return "";
+   }
+  };
   const interviewerClass = classNames("interviewers__item", {
     "interviewers__item--selected": props.selected,
     "day-list__item--full": props.spots === 0
@@ -17,7 +24,7 @@ export default function InterviewerListItem(props) {
         src="https://i.imgur.com/LpaY82x.png"
         alt="Sylvia Palmer"
       />
-      Sylvia Palmer
+      {formatName()}
     </li>
   )
 }
