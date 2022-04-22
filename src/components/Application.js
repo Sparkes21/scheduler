@@ -56,7 +56,7 @@ export default function Application(props) {
   });
   const dailyAppointments = getAppointmentsForDay(state, state.day);
   const setDay = day => setState({...state, day});
-console.log( state.interviewers)
+  //console.log( state.interviewers)
   // const setDays = days => setState(prev => ({ ...prev, days }));
 
   useEffect(() => {
