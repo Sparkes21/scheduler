@@ -4,6 +4,7 @@ import DayList from "./DayList";
 import "components/Application.scss";
 import "components/Appointment";
 import Appointment from "components/Appointment";
+import { getAppointmentsForDay } from "helpers/selectors";
 
 
 // const appointments = {
@@ -52,7 +53,7 @@ export default function Application(props) {
     days: [],
     appointments: {}
   });
-  const dailyAppointments = [];
+  const dailyAppointments = getAppointmentsForDay(state, state.day)
   const setDay = day => setState({...state, day});
 
   // const setDays = days => setState(prev => ({ ...prev, days }));
