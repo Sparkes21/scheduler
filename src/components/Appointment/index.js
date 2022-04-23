@@ -34,7 +34,7 @@ console.log("my props", props);
         {mode === CREATE && (
           <Form
           // student={props.interview.student}
-          interviewers={[]}
+          interviewers={props.interviewers}
           onCancel= {() => back()}
           />
         )}
