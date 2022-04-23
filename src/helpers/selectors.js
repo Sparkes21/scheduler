@@ -27,3 +27,15 @@ export function getInterview(state, interview) {
   }
   return result;
 }
+
+export function getInterviewersForDay(state, day) {
+  let dayObject = state.days.find((currentDay) => {
+    return currentDay.name === day
+  });  
+  if (typeof dayObject === "undefined") {
+    return [];
+  }
+  return Object.values(state.interviewers).filter((interview) => {
+    return dayObject.interviewers.includes(interview.id)
+  })
+}
