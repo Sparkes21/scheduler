@@ -5,6 +5,7 @@ import Show from "./Show";
 import Empty from "./Empty";
 import Form from "./Form";
 import Status from "./Status";
+import Confirm from "./Confirm";
 import useVisualMode from "hooks/useVisualMode";
 
 
@@ -14,7 +15,9 @@ console.log("my props", props);
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
   const SAVE = "SAVE";
-  const CREATE = 'CREATE';
+  const CREATE = "CREATE";
+  const DELETE = "DELETE";
+  const CONFIRM = "CONFIRM";
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
@@ -28,6 +31,12 @@ console.log("my props", props);
     props.bookInterview(props.id, interview).then(() => {transition(SHOW)});
   };
 
+  const remove = () => {
+    transition(DELETE)
+    props.cancelInterview(props.id).then(() => {
+      transition(EMPTY)
+    })
+  };
 
   return (
     <Fragment>
@@ -40,6 +49,7 @@ console.log("my props", props);
           <Show
             student={props.interview.student}
             interviewer={props.interview.interviewer}
+            onDelete={() => transition(CONFIRM)}
           />
         )}
         {mode === CREATE && (
@@ -50,12 +60,23 @@ console.log("my props", props);
           onCancel= {() => back()}
           />
         )}
-
         {mode === SAVE && (
           <Status 
             message={"Saving"}
           />
         )}
+
+        {mode === DELETE && (
+          <Status 
+            message={"Deleting"}
+          />
+        )}
+
+        {mode === CONFIRM && <Confirm 
+          onConfirm={remove}
+          message="Are you sure you want to delete?"
+        />}
+
 
       </article>
     </Fragment>
