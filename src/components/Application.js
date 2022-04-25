@@ -17,8 +17,25 @@ export default function Application(props) {
   });
   const dailyAppointments = getAppointmentsForDay(state, state.day);
   const dailyInterviewers = getInterviewersForDay(state, state.day);
-  console.log("dailyinterviewers", dailyInterviewers);
+  // console.log("dailyinterviewers", dailyInterviewers);
   const setDay = day => setState({...state, day});
+
+  const bookInterview = (id, interview) => {
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+    console.log(id, interview);
+    setState({
+      ...state,
+      appointments
+    });
+
+  }
 
 
   useEffect(() => {
@@ -35,7 +52,7 @@ export default function Application(props) {
   }, []);
 
   const appointmentListComponents = dailyAppointments.map((appointment) => {
-    console.log("appointment", appointment);
+    // console.log("appointment", appointment);
     const interview = getInterview(state, appointment.interview);
 
     return (
@@ -44,6 +61,7 @@ export default function Application(props) {
         {...appointment}
         interview={interview}
         interviewers={dailyInterviewers}
+        bookInterview={bookInterview}
       />
     )
   });

@@ -17,6 +17,15 @@ console.log("my props", props);
     props.interview ? SHOW : EMPTY
   );
 
+  const save = (name, interviewer) => {
+    const interview = {
+      student: name,
+      interviewer
+    };
+    props.bookInterview(props.id, interview)
+    transition(SHOW);
+  };
+
 
   return (
     <Fragment>
@@ -33,7 +42,8 @@ console.log("my props", props);
         )}
         {mode === CREATE && (
           <Form
-          // student={props.interview.student}
+          name={props.name}
+          onSave={save}
           interviewers={props.interviewers}
           onCancel= {() => back()}
           />
