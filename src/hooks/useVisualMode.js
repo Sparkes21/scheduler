@@ -17,13 +17,9 @@ export default function useVisualMode(initial) {
   };
 
   const back = () => {
-    console.log("history after back call", history)
     if (history.length <= 1) {
       return setMode(initial)
     };
-    
-    //history.pop()
-    
     setMode(history[history.length-2])
     setHistory(prev => [...prev.slice(0, prev.length - 1)])
   }

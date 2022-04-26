@@ -15,7 +15,7 @@ export default function Form(props) {
     reset();
     props.onCancel();
   }
-  console.log("props inside form", props)
+ 
   return (
     <main className="appointment__card appointment__card--create">
   <section className="appointment__card-left">
