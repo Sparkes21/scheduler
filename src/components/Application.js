@@ -5,7 +5,7 @@ import "components/Application.scss";
 import "components/Appointment";
 import Appointment from "components/Appointment";
 import { getInterviewersForDay, getInterview, getAppointmentsForDay } from "helpers/selectors";
-import { NULL } from "node-sass";
+
 
 
 export default function Application(props) {
@@ -47,7 +47,7 @@ export default function Application(props) {
     };
     return axios.delete(`http://localhost:8001/api/appointments/${id}`)
       .then(() => {
-      setState({...state,appointments});
+      setState({...state, appointments});
     })
   }
 

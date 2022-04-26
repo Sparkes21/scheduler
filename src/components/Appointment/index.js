@@ -18,6 +18,7 @@ console.log("my props", props);
   const CREATE = "CREATE";
   const DELETE = "DELETE";
   const CONFIRM = "CONFIRM";
+  const EDIT = "EDIT";
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
@@ -47,9 +48,10 @@ console.log("my props", props);
 
         {mode === SHOW && (
           <Show
-            student={props.interview.student}
+            name={props.interview.student}
             interviewer={props.interview.interviewer}
             onDelete={() => transition(CONFIRM)}
+            onEdit={() => transition(EDIT)}
           />
         )}
         {mode === CREATE && (
@@ -60,22 +62,24 @@ console.log("my props", props);
           onCancel= {() => back()}
           />
         )}
-        {mode === SAVE && (
-          <Status 
-            message={"Saving"}
-          />
-        )}
+        {mode === SAVE && <Status message={"Saving"}/>}
 
-        {mode === DELETE && (
-          <Status 
-            message={"Deleting"}
-          />
-        )}
+        {mode === DELETE && <Status message={"Deleting"}/>}
 
         {mode === CONFIRM && <Confirm 
           onConfirm={remove}
+          onCancel={back}
           message="Are you sure you want to delete?"
         />}
+          {console.log("props in index", props)}
+        {mode === EDIT && (<Form
+          name={props.interview.student}
+          interviewer={props.interview.interviewer.id}
+          interviewers={props.interviewers}
+          onSave={save}
+          onCancel={back}
+        />
+        )}
 
 
       </article>
