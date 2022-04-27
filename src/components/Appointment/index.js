@@ -25,8 +25,7 @@ export default function Appointment(props) {
     props.interview ? SHOW : EMPTY
   );
 
-  const save = (name, interviewerId) => {
-    const interviewer = props.interviewers[interviewerId]
+  const save = (name, interviewer) => {
     const interview = {
       student: name,
       interviewer

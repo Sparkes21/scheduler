@@ -3,6 +3,7 @@ import InterviewerList from "components/InterviewerList";
 import Button from "components/Button"; 
 
 export default function Form(props) {
+  console.log("props in form", props)
   const [error, setError] = useState("");
   const [student, setStudent] = useState(props.name || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
@@ -28,15 +29,16 @@ export default function Form(props) {
       return;
     }
     setError("");
-    props.onSave(student, interviewer.id);
+    props.onSave(student, interviewer);
   }
   
  
   return (
     <main className="appointment__card appointment__card--create">
   <section className="appointment__card-left">
-    <form onSubmit={event => event.preventDefault()} autoComplete="off">
+    <form  autoComplete="off">
       <input
+        onSubmit={event => event.preventDefault()}
         className="appointment__create-input text--semi-bold"
         name="name"
         type="text"
