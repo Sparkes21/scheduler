@@ -13,7 +13,7 @@ Interview scheduler is a Single Page Application to track students interviews. T
 
 ## Final Product
 
-
+!["home view"](https://github.com/Sparkes21/scheduler/blob/master/docs/home-view.png?raw=true)
 
 
 
