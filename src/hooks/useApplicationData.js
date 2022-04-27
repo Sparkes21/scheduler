@@ -2,18 +2,17 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 export default function useApplicationData() {
-  
+  //sets the state for the day
   const [state, setState] = useState({
     day: "Monday",
     days: [],
     appointments: {},
     interviewers: {}
   });
-
   const setDay = day => setState({...state, day});
 
   
-
+  //makes api call for the data saved in memory
   useEffect(() => {
     Promise.all([
       axios.get("http://localhost:8001/api/days"),
@@ -40,7 +39,7 @@ export default function useApplicationData() {
       if (!appointment.interview) {
         spots++;
       }
-    }
+    };
 
     const day = {...dayObj, spots};
     const days = state.days.map(d => d.name === state.day ? day : d);
@@ -48,8 +47,9 @@ export default function useApplicationData() {
     //return an updated days array
      return days;
     
-  }
+  };
 
+  // function for creating an interview appointment and saving it in memory
   const bookInterview = (id, interview) => {
     
     const appointment = {
@@ -69,6 +69,7 @@ export default function useApplicationData() {
     });
   };
 
+  // function for cancelling an interview appointment and deleting it from memory
   const cancelInterview = (id) => {
     const appointment = {
       ...state.appointments[id],

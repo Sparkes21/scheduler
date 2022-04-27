@@ -3,7 +3,6 @@ import InterviewerList from "components/InterviewerList";
 import Button from "components/Button"; 
 
 export default function Form(props) {
-  console.log("props in form", props)
   const [error, setError] = useState("");
   const [student, setStudent] = useState(props.name || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
@@ -12,12 +11,13 @@ export default function Form(props) {
     setStudent('');
     setInterviewer(null);
   };
-
+  // contains the cancel function in props.onCancel and calls reset to set the fields as blank
   const cancel = () => {
     reset();
     props.onCancel();
-  }
+  };
 
+  // error handling and contains the save function in props.onSave
   function validate() {
     if (student === "") {
       setError("Student name cannot be blank");

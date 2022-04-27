@@ -8,7 +8,7 @@ export function getAppointmentsForDay(state, day) {
   return Object.values(state.appointments).filter((appointment) => {
     return dayObject.appointments.includes(appointment.id)
   })
-}
+};
 
 export function getInterview(state, interview) {
   let interviewersObj = state.interviewers;
@@ -26,7 +26,7 @@ export function getInterview(state, interview) {
     }
   }
   return result;
-}
+};
 
 export function getInterviewersForDay(state, day) {
   let dayObject = state.days.find((currentDay) => {
@@ -38,4 +38,4 @@ export function getInterviewersForDay(state, day) {
   return Object.values(state.interviewers).filter((interview) => {
     return dayObject.interviewers.includes(interview.id)
   })
-}
+};

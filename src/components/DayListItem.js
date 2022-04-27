@@ -13,11 +13,11 @@ export default function DayListItem(props) {
     
     return `${props.spots} spots remaining`
     
-  }
+  };
   const dayClass = classNames("day-list__item", {
     "day-list__item--selected": props.selected,
     "day-list__item--full": props.spots === 0
-  })
+  });
   return (
     <li data-testid={"day"} className={dayClass} onClick={() => props.setDay(props.name)} selected={props.selected}>
       <h2 className="text--regular">{props.name}</h2> 
